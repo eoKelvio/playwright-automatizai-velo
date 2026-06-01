@@ -111,3 +111,14 @@ Not Found Page
 
 Should be able to display the 404 error page when the user navigates to a non-existent route.
 Should be able to redirect to the initial page when the user clicks the "Return to Home" link on the 404 page.
+
+
+E2E
+
+Should be able to complete a full purchase with full payment and receive an approved status.
+Should be able to complete a full purchase with financing and receive an approved status when the credit score is above 700.
+Should be able to complete a full purchase with financing and receive a rejected status when the credit score is below 500.
+Should be able to complete a full purchase with financing and receive an in-analysis status when the credit score is between 501 and 700.
+Should be able to complete a full purchase with financing and receive an approved status when the down payment is at least 50% of the total price regardless of credit score.
+Should be able to consult the order on the lookup page after completing a purchase and navigating from the success page.
+Should be able to navigate back to the configure page by clicking "Configurar Outro" on the success page and complete a second purchase.
