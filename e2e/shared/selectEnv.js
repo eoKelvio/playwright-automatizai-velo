@@ -29,7 +29,7 @@ function getEnv(varName) {
   if (process.env[varName]) return process.env[varName]
 
   // 3. .env
-  dotenv.config({ override: false })
+  dotenv.config({ path: path.resolve(__dirname, '..', '.env'), override: false })
   if (process.env[varName]) return process.env[varName]
 
   throw new Error(
