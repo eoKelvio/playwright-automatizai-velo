@@ -1,0 +1,13 @@
+.env*
+!.env.example
+
+reporter/
+test-results/
+playwright-report/
+blob-report/
+.playwright/
+.playwright-mcp/
+
+*.pem
+*.key
+*.crt

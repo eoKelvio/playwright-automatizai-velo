@@ -1,0 +1,6 @@
+dist/
+dist-ssr/
+*.local
+.env
+docs/db-passwd.txt
+supabase/.temp/

@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "@/actions/*": ["./actions/*"],
+      "@/fixtures/*": ["./fixtures/*"],
+      "@/helpers/*": ["./helpers/*"],
+      "@/shared/*": ["./shared/*"],
+      "@/modules/*": ["./modules/*"]
+    },
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "checkJs": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": false,
+    "noFallthroughCasesInSwitch": false
+  },
+  "include": [
+    "**/*.js",
+    "**/*.ts",
+    "**/*.json",
+    "modules/**/*",
+    "fixtures/**/*",
+    "actions/**/*",
+    "shared/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "reporter/"
+  ]
+}

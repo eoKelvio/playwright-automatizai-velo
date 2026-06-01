@@ -1,0 +1,8 @@
+{
+  "name": "playwright-automatizai-velo",
+  "private": true,
+  "workspaces": [
+    "app",
+    "e2e"
+  ]
+}
