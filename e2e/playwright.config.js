@@ -2,8 +2,9 @@ import { defineConfig } from '@playwright/test'
 
 export default defineConfig({
   testMatch: ['**/*.spec.js'],
+  fullyParallel: true,
   forbidOnly: false,
-  retries: 1,
+  retries: 0,
   timeout: 60000,
   expect: { timeout: 30000 },
   workers: 1,
