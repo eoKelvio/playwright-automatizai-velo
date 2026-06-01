@@ -15,7 +15,8 @@ test.describe('Mobile Navigation', () => {
 
     await test.step('Validate mobile menu is visible', async () => {
       const mobileNavContainer = page.getByTestId('header-mobile-nav').locator('..')
-      await expect(mobileNavContainer).toHaveClass(/opacity-100/)
+      const expectedClass = /opacity-100/
+      await expect(mobileNavContainer).toHaveClass(expectedClass)
     })
 
     await test.step('Close mobile menu', async () => {
@@ -24,7 +25,8 @@ test.describe('Mobile Navigation', () => {
 
     await test.step('Validate mobile menu is hidden', async () => {
       const mobileNavContainer = page.getByTestId('header-mobile-nav').locator('..')
-      await expect(mobileNavContainer).toHaveClass(/opacity-0/)
+      const expectedClass = /opacity-0/
+      await expect(mobileNavContainer).toHaveClass(expectedClass)
     })
   })
 

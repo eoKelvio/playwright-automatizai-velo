@@ -63,7 +63,8 @@ test.describe('Landing Page', () => {
 
     await test.step('Validate FAQ item is open', async () => {
       const faqItem = page.getByTestId('faq-item-0')
-      await expect(faqItem).toHaveAttribute('data-state', 'open')
+      const expectedState = 'open'
+      await expect(faqItem).toHaveAttribute('data-state', expectedState)
     })
   })
 
@@ -74,7 +75,8 @@ test.describe('Landing Page', () => {
 
     await test.step('Validate FAQ item is open', async () => {
       const faqItem = page.getByTestId('faq-item-1')
-      await expect(faqItem).toHaveAttribute('data-state', 'open')
+      const expectedState = 'open'
+      await expect(faqItem).toHaveAttribute('data-state', expectedState)
     })
   })
 
@@ -85,7 +87,8 @@ test.describe('Landing Page', () => {
 
     await test.step('Validate FAQ item is open', async () => {
       const faqItem = page.getByTestId('faq-item-2')
-      await expect(faqItem).toHaveAttribute('data-state', 'open')
+      const expectedState = 'open'
+      await expect(faqItem).toHaveAttribute('data-state', expectedState)
     })
   })
 
@@ -96,7 +99,8 @@ test.describe('Landing Page', () => {
 
     await test.step('Validate FAQ item is open', async () => {
       const faqItem = page.getByTestId('faq-item-3')
-      await expect(faqItem).toHaveAttribute('data-state', 'open')
+      const expectedState = 'open'
+      await expect(faqItem).toHaveAttribute('data-state', expectedState)
     })
   })
 
@@ -107,7 +111,8 @@ test.describe('Landing Page', () => {
 
     await test.step('Validate FAQ item is open', async () => {
       const faqItem = page.getByTestId('faq-item-4')
-      await expect(faqItem).toHaveAttribute('data-state', 'open')
+      const expectedState = 'open'
+      await expect(faqItem).toHaveAttribute('data-state', expectedState)
     })
   })
 
@@ -118,7 +123,8 @@ test.describe('Landing Page', () => {
 
     await test.step('Validate FAQ item is open', async () => {
       const faqItem = page.getByTestId('faq-item-5')
-      await expect(faqItem).toHaveAttribute('data-state', 'open')
+      const expectedState = 'open'
+      await expect(faqItem).toHaveAttribute('data-state', expectedState)
     })
   })
 
@@ -129,7 +135,8 @@ test.describe('Landing Page', () => {
 
     await test.step('Validate FAQ item is open', async () => {
       const faqItem = page.getByTestId('faq-item-0')
-      await expect(faqItem).toHaveAttribute('data-state', 'open')
+      const expectedState = 'open'
+      await expect(faqItem).toHaveAttribute('data-state', expectedState)
     })
 
     await test.step('Collapse FAQ item', async () => {
@@ -138,7 +145,8 @@ test.describe('Landing Page', () => {
 
     await test.step('Validate FAQ item is closed', async () => {
       const faqItem = page.getByTestId('faq-item-0')
-      await expect(faqItem).toHaveAttribute('data-state', 'closed')
+      const expectedState = 'closed'
+      await expect(faqItem).toHaveAttribute('data-state', expectedState)
     })
   })
 })
