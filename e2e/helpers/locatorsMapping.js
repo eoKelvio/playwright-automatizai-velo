@@ -20,8 +20,11 @@ export const locatorsMapping = (page) => {
     configure: {
       totalPrice: page.getByTestId('total-price'),
       colorSection: page.getByTestId('section-cores'),
+      colorOption: (color) => page.getByTestId(`color-option-${color}`),
       wheelsSection: page.getByTestId('section-rodas'),
+      wheelOption: (type) => page.getByTestId(`wheel-option-${type}`),
       optionalsSection: page.getByTestId('section-opcionais'),
+      optionalItem: (id) => page.getByTestId(`opt-${id}`),
       carExterior: page.getByTestId('car-exterior-image'),
       carInterior: page.getByTestId('car-interior-image'),
       checkoutButton: page.getByTestId('checkout-button'),
