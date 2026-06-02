@@ -122,3 +122,20 @@ Should be able to complete a full purchase with financing and receive an in-anal
 Should be able to complete a full purchase with financing and receive an approved status when the down payment is at least 50% of the total price regardless of credit score.
 Should be able to consult the order on the lookup page after completing a purchase and navigating from the success page.
 Should be able to navigate back to the configure page by clicking "Configurar Outro" on the success page and complete a second purchase.
+
+
+API
+
+Orders
+
+Should be able to create an order with full payment and receive a 201 response with the generated order number.
+Should be able to create an order with financing and receive a 201 response with the correct status.
+Should be able to fetch an existing order by its order number and receive the full order data.
+Should be able to receive an empty response when fetching a non-existent order number.
+Should be able to create an order without authentication and receive a 201 response (public RLS policy).
+Should be able to verify that the created_at and updated_at fields are automatically populated on order creation.
+Should be able to create an order with optional features and verify they are persisted correctly as an array.
+
+Credit Analysis
+
+Should be able to receive a 400 response when submitting the credit analysis request without a CPF.

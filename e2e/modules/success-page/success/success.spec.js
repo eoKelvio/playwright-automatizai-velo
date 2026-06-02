@@ -2,11 +2,12 @@ import { test, expect } from '@/fixtures/actions.js'
 import { urlsMapping } from '@/helpers/urlsMapping.js'
 
 test.describe('Success', () => {
-  test.beforeEach(async ({ actions }) => {
+  test.beforeEach(async ({ page, actions }) => {
     await actions.interface.setup.navigation.goToConfigure()
     await actions.interface.configurator.buildVehicle({ checkout: true })
     await actions.interface.order.fillOrderForm()
     await actions.interface.order.submit()
+    await expect(page).toHaveURL(/\/success/)
   })
 
   test('Should be able to redirect to the initial page when the user clicks the "Velô" logo on the success page.', async ({ page, actions }) => {
@@ -120,9 +121,10 @@ test.describe('Success', () => {
     })
   })
 
-  test('Should be able to redirect to the initial page when the user accesses the "/success" route directly without order state.', async ({ page }) => {
+  test('Should be able to redirect to the initial page when the user accesses the "/success" route directly without order state.', async ({ page, actions }) => {
     await test.step('Navigate directly to /success without state', async () => {
-      await page.goto(urlsMapping.success)
+      await actions.interface.setup.navigation.goToHome()
+      await actions.interface.setup.navigation.goToSuccess()
     })
 
     await test.step('Validate redirect to initial page', async () => {

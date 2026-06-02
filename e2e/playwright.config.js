@@ -7,7 +7,7 @@ export default defineConfig({
   retries: 0,
   timeout: 60000,
   expect: { timeout: 30000 },
-  workers: 1,
+  workers: 4,
   reporter: [
     ['dot'],
     ['blob', { outputDir: 'reporter/blob' }],
@@ -15,7 +15,7 @@ export default defineConfig({
     ['html', { outputFolder: 'reporter/html/', open: 'never' }],
   ],
   use: {
-    trace: 'on',
+    trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
     actionTimeout: 40000,
