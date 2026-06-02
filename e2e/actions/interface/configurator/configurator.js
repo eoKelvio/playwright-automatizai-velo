@@ -26,6 +26,15 @@ class ConfiguratorActions {
   async clickCheckout() {
     await this.l.configure.checkoutButton.click()
   }
+
+  async buildVehicle({ color = 'glacier-blue', wheels = 'aero', optionals = [], checkout = false } = {}) {
+    if (color !== 'glacier-blue') await this.selectColor(color)
+    if (wheels !== 'aero') await this.selectWheels(wheels)
+    for (const optional of optionals) {
+      await this.toggleOptional(optional)
+    }
+    if (checkout) await this.clickCheckout()
+  }
 }
 
 const configuratorFactory = (page) => new ConfiguratorActions(page)
