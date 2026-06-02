@@ -39,7 +39,7 @@ jobs:
         run: |
           cat > e2e/.env << EOF
           BASE_URL=http://localhost:5173
-          SUPABASE_URL=${{ secrets.SUPABASE_URL }}
+          SUPABASE_URL=${{ secrets.VITE_SUPABASE_URL }}
           SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}
           EOF
 
