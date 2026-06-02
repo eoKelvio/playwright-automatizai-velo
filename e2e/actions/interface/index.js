@@ -3,6 +3,7 @@ import setupFactory from './setup/index.js'
 import landingFactory from './landing/landing.js'
 import configuratorFactory from './configurator/configurator.js'
 import orderFactory from './order/order.js'
+import successFactory from './success/success.js'
 
 /**
  * @param {import('playwright').Page} page
@@ -15,6 +16,7 @@ const interfaceFactory = page => {
     landing: landingFactory(page),
     configurator: configuratorFactory(page),
     order: orderFactory(page),
+    success: successFactory(page),
   }
 }
 
