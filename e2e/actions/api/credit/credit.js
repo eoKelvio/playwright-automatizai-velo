@@ -7,7 +7,7 @@ class CreditApiActions {
   constructor(request) {
     this.request = request
     this.headers = {
-      'Authorization': `Bearer ${data.SUPABASE_ANON_KEY}`,
+      'Authorization': `Bearer ${data.SUPABASE_ANON_KEY.trim()}`,
       'Content-Type': 'application/json',
     }
   }

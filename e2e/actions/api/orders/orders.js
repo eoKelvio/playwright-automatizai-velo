@@ -6,9 +6,10 @@ class OrdersApiActions {
   /** @param {import('@playwright/test').APIRequestContext} request */
   constructor(request) {
     this.request = request
+    const key = data.SUPABASE_ANON_KEY.trim()
     this.headers = {
-      'apikey': data.SUPABASE_ANON_KEY,
-      'Authorization': `Bearer ${data.SUPABASE_ANON_KEY}`,
+      'apikey': key,
+      'Authorization': `Bearer ${key}`,
       'Content-Type': 'application/json',
       'Prefer': 'return=representation',
     }
