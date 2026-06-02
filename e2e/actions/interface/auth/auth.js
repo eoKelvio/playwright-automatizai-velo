@@ -1,20 +1,12 @@
-import data from '@/fixtures/data'
+import data from '@/fixtures/data.js'
 
 class AuthActions {
-  /** @type {import('playwright').Page} */
-  page
-
-  /** @param {import('playwright').Page} page */
+  /** @param {import('@playwright/test').Page} page */
   constructor(page) {
     this.page = page
   }
-
 }
 
-/**
- * @param {import('playwright').Page} page
- * @returns {AuthActions}
- */
 const authFactory = page => new AuthActions(page)
 export default authFactory
 
