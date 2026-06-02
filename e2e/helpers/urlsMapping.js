@@ -3,6 +3,7 @@ import data from '@/fixtures/data.js'
 const BASE_URL = data.URL
 
 export const urlsMapping = {
+  base: BASE_URL,
   landing: `${BASE_URL}/`,
   configure: `${BASE_URL}/configure`,
   order: `${BASE_URL}/order`,
