@@ -1,0 +1,58 @@
+name: E2E Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+        working-directory: e2e
+
+      - name: Create app .env
+        run: |
+          cat > app/.env << EOF
+          VITE_SUPABASE_PROJECT_ID=${{ secrets.VITE_SUPABASE_PROJECT_ID }}
+          VITE_SUPABASE_PUBLISHABLE_KEY=${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
+          VITE_SUPABASE_URL=${{ secrets.VITE_SUPABASE_URL }}
+          EOF
+
+      - name: Create e2e .env
+        run: echo "BASE_URL=http://localhost:5173" > e2e/.env
+
+      - name: Start app
+        run: npm run dev &
+        working-directory: app
+
+      - name: Wait for app to be ready
+        run: npx wait-on http://localhost:5173 --timeout 60000
+
+      - name: Run tests
+        run: npm test
+        working-directory: e2e
+
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: e2e/reporter/html/
+          retention-days: 30
