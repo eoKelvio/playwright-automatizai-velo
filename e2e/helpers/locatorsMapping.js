@@ -31,6 +31,7 @@ export const locatorsMapping = (page) => {
     },
 
     order: {
+      backButton: page.locator('header button').first(),
       name: page.getByTestId('checkout-name'),
       surname: page.getByTestId('checkout-surname'),
       email: page.getByTestId('checkout-email'),
