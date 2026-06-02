@@ -121,9 +121,10 @@ test.describe('Success', () => {
     })
   })
 
-  test('Should be able to redirect to the initial page when the user accesses the "/success" route directly without order state.', async ({ page }) => {
+  test('Should be able to redirect to the initial page when the user accesses the "/success" route directly without order state.', async ({ page, actions }) => {
     await test.step('Navigate directly to /success without state', async () => {
-      await page.goto(urlsMapping.success)
+      await actions.interface.setup.navigation.goToHome()
+      await actions.interface.setup.navigation.goToSuccess()
     })
 
     await test.step('Validate redirect to initial page', async () => {
