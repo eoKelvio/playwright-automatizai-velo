@@ -1,6 +1,6 @@
-# Playwright Base
+# E2E Tests — Velô Sprint
 
-E2E test framework built on top of [Playwright](https://playwright.dev/).
+Testes automatizados da aplicação Velô Sprint, escritos em Playwright.
 
 ## Setup
 
@@ -9,64 +9,110 @@ npm install
 npm run install:browsers
 ```
 
-Create a `.env` file at the root (see `.env.example`):
+Crie um arquivo `.env` na raiz da pasta `e2e/` (veja `.env.example`):
 
 ```env
-BASE_URL=https://your-app.com
-USER_EMAIL=user@example.com
-USER_PASSWORD=yourpassword
+BASE_URL=http://localhost:5173
 ```
 
-## Running tests
+## Rodando os testes
 
 ```bash
-npm test                          # all tests
-npm run test:headed               # visible browser
-npm run test:debug                # debug mode
-npm run test:ui                   # interactive UI
-npm run test:module MODULE=auth   # specific module
-npm run test:critical             # @critical tests only
-npm run test:regression           # @regression tests only
+# Todos os testes
+npm test
+
+# Browser visível
+npm run test:headed
+
+# Modo debug (passo a passo)
+npm run test:debug
+
+# Interface interativa
+npm run test:ui
+
+# Módulo específico
+npm run test:module MODULE=landing-page
+
+# Suite específica dentro de um módulo
+npm run test:suite MODULE=landing-page SUITE=landing-page
+
+# Testes por tag
+npm run test:critical
+npm run test:regression
 ```
 
-## Reports
+## Relatório
 
 ```bash
-npm run report   # open HTML report
+npm run report
 ```
 
-## Project structure
+## Estrutura
 
 ```
-actions/
-  interface/   # UI actions (receive page)
-  api/         # API actions (receive request)
-fixtures/
-  actions.js   # extended test fixture
-  data.js      # environment variables
-helpers/
-  urlsMapping.js
-  locatorsMapping.js
-modules/       # test specs (.spec.js)
-shared/        # generic utilities
+e2e/
+├── actions/
+│   ├── interface/          # Ações de UI (recebem page)
+│   │   ├── auth/
+│   │   ├── configurator/
+│   │   ├── landing/
+│   │   ├── lookup/
+│   │   ├── order/
+│   │   ├── setup/          # navigation, common
+│   │   └── success/
+│   └── api/                # Ações de API (recebem request)
+├── fixtures/
+│   ├── actions.js          # Fixture estendido com { actions }
+│   └── data.js             # Variáveis de ambiente
+├── helpers/
+│   ├── urlsMapping.js      # Todas as rotas centralizadas
+│   └── locatorsMapping.js  # Factory de locators por domínio
+├── modules/                # Specs organizados por módulo/suite
+│   ├── landing-page/
+│   │   ├── landing-page/
+│   │   ├── mobile-navigation/
+│   │   └── navigation-links/
+│   ├── configure-page/
+│   ├── order-page/
+│   ├── success-page/
+│   ├── order-lookup/
+│   ├── terms-page/
+│   ├── privacy-page/
+│   ├── not-found/
+│   └── e2e-flows/
+└── shared/                 # Utilitários genéricos
 ```
 
-## Writing tests
+## Escrevendo testes
 
-Always import `test` and `expect` from `@/fixtures/actions.js`:
+Sempre importe `test` e `expect` de `@/fixtures/actions.js`. Nunca de `@playwright/test` diretamente.
 
 ```javascript
 import { test, expect } from '@/fixtures/actions.js'
-import data from '@/fixtures/data.js'
+import { urlsMapping } from '@/helpers/urlsMapping.js'
 
-test.describe('Auth — Login', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto(data.URL)
+test.describe('Nome da Suite', () => {
+  test.beforeEach(async ({ actions }) => {
+    await actions.interface.setup.navigation.goToHome()
   })
 
-  test('should login with valid credentials @critical', async ({ page, actions }) => {
-    await actions.interface.auth.login({ email: data.USER_EMAIL, password: data.USER_PASSWORD })
-    await expect(page).toHaveURL('/dashboard')
+  test('Should be able to...', async ({ page, actions }) => {
+    await test.step('Descrição da ação', async () => {
+      await actions.interface.landing.clickConfigureAgora()
+    })
+
+    await test.step('Descrição da validação', async () => {
+      const expectedUrl = urlsMapping.configure
+      await expect(page).toHaveURL(expectedUrl)
+    })
   })
 })
 ```
+
+## Convenções
+
+- **Ações** (clicks, fills, navegação) → dentro de `actions/interface/`
+- **Validações** → no spec, dentro de `test.step`, com `const` nomeada para locator e valor esperado
+- **Mocks de API** → via `page.route()`, encapsulados como métodos nas actions
+- **Locators** → `locatorsMapping(page)` nas actions; `page.getByTestId()` direto nos specs
+- **URLs** → sempre via `urlsMapping`, nunca hardcoded
