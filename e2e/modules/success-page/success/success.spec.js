@@ -2,11 +2,12 @@ import { test, expect } from '@/fixtures/actions.js'
 import { urlsMapping } from '@/helpers/urlsMapping.js'
 
 test.describe('Success', () => {
-  test.beforeEach(async ({ actions }) => {
+  test.beforeEach(async ({ page, actions }) => {
     await actions.interface.setup.navigation.goToConfigure()
     await actions.interface.configurator.buildVehicle({ checkout: true })
     await actions.interface.order.fillOrderForm()
     await actions.interface.order.submit()
+    await expect(page).toHaveURL(/\/success/)
   })
 
   test('Should be able to redirect to the initial page when the user clicks the "Velô" logo on the success page.', async ({ page, actions }) => {
