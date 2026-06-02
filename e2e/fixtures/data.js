@@ -3,8 +3,16 @@ import getEnv from '@/shared/selectEnv.js'
 
 dotenv.config()
 
+const getOptionalEnv = (key) => {
+  try {
+    return getEnv(key)
+  } catch {
+    return ''
+  }
+}
+
 export default {
   URL: getEnv('BASE_URL'),
-  SUPABASE_URL: getEnv('SUPABASE_URL'),
-  SUPABASE_ANON_KEY: getEnv('SUPABASE_ANON_KEY'),
+  SUPABASE_URL: getOptionalEnv('SUPABASE_URL'),
+  SUPABASE_ANON_KEY: getOptionalEnv('SUPABASE_ANON_KEY'),
 }
